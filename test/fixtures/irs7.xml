@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Return xmlns="http://www.irs.gov/efile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" returnVersion="2020v4.0">
+  <ReturnHeader binaryAttachmentCnt="0">
+    <ReturnTs>2021-08-31T08:01:32-05:00</ReturnTs>
+    <TaxPeriodEndDt>2020-12-31</TaxPeriodEndDt>
+    <PreparerFirmGrp>
+      <PreparerFirmEIN>481026411</PreparerFirmEIN>
+      <PreparerFirmName>
+        <BusinessNameLine1Txt>POTTBERG GASSMAN &amp; HOFFMAN CHTD</BusinessNameLine1Txt>
+      </PreparerFirmName>
+      <PreparerUSAddress>
+        <AddressLine1Txt>529 HUMBOLDT SUITE I</AddressLine1Txt>
+        <CityNm>MANHATTAN</CityNm>
+        <StateAbbreviationCd>KS</StateAbbreviationCd>
+        <ZIPCd>66502</ZIPCd>
+      </PreparerUSAddress>
+    </PreparerFirmGrp>
+    <ReturnTypeCd>990PF</ReturnTypeCd>
+    <TaxPeriodBeginDt>2020-01-01</TaxPeriodBeginDt>
+    <Filer>
+      <EIN>742805201</EIN>
+      <BusinessName>
+        <BusinessNameLine1Txt>THE H ALAN &amp; KAREN K BELL FAMILY</BusinessNameLine1Txt>
+        <BusinessNameLine2Txt>FOUNDATION</BusinessNameLine2Txt>
+      </BusinessName>
+      <BusinessNameControlTxt>HALA</BusinessNameControlTxt>
+      <PhoneNum>7855371673</PhoneNum>
+      <USAddress>
+        <AddressLine1Txt>3015 CHERRY HILL ROAD</AddressLine1Txt>
+        <CityNm>MANHATTAN</CityNm>
+        <StateAbbreviationCd>KS</StateAbbreviationCd>
+        <ZIPCd>66503</ZIPCd>
+      </USAddress>
+    </Filer>
+    <BusinessOfficerGrp>
+      <PersonNm>H ALAN BELL</PersonNm>
+      <PersonTitleTxt>PRESIDENT</PersonTitleTxt>
+      <PhoneNum>7855371673</PhoneNum>
+      <SignatureDt>2021-08-30</SignatureDt>
+    </BusinessOfficerGrp>
+    <SigningOfficerGrp>
+      <PersonFullName>
+        <PersonFirstNm>H ALAN</PersonFirstNm>
+        <PersonLastNm>BELL</PersonLastNm>
+      </PersonFullName>
+      <SSN>XXX-XX-XXXX</SSN>
+    </SigningOfficerGrp>
+    <PreparerPersonGrp>
+      <PreparerPersonNm>DANIEL S HOFFMAN CPA</PreparerPersonNm>
+      <PTIN>P00037049</PTIN>
+      <PhoneNum>7855379700</PhoneNum>
+      <PreparationDt>2021-08-30</PreparationDt>
+    </PreparerPersonGrp>
+    <FilingSecurityInformation>
+      <IPAddress>
+        <IPv4AddressTxt>8.15.201.72</IPv4AddressTxt>
+      </IPAddress>
+      <IPDt>2021-08-31</IPDt>
+      <IPTm>08:01:32</IPTm>
+      <IPTimezoneCd>CD</IPTimezoneCd>
+      <FilingLicenseTypeCd>P</FilingLicenseTypeCd>
+      <TotalPreparationSubmissionTs>000436</TotalPreparationSubmissionTs>
+      <TotActiveTimePrepSubmissionTs>000436</TotActiveTimePrepSubmissionTs>
+      <AtSubmissionCreationDeviceId>C031C1889B5578F2807A6741BD163A3F989D9EEE</AtSubmissionCreationDeviceId>
+      <AtSubmissionFilingDeviceId>C031C1889B5578F2807A6741BD163A3F989D9EEE</AtSubmissionFilingDeviceId>
+    </FilingSecurityInformation>
+    <TaxYr>2020</TaxYr>
+    <BuildTS>2022-01-07 14:23:13Z</BuildTS>
+  </ReturnHeader>
+  <ReturnData documentCnt="7">
+    <IRS990PF documentId="RetDoc7">
+      <Organization501c3ExemptPFInd>X</Organization501c3ExemptPFInd>
+      <FMVAssetsEOYAmt>261395</FMVAssetsEOYAmt>
+      <MethodOfAccountingCashInd>X</MethodOfAccountingCashInd>
+      <AnalysisOfRevenueAndExpenses>
+        <ScheduleBNotRequiredInd>X</ScheduleBNotRequiredInd>
+        <InterestOnSavRevAndExpnssAmt>5</InterestOnSavRevAndExpnssAmt>
+        <InterestOnSavNetInvstIncmAmt>5</InterestOnSavNetInvstIncmAmt>
+        <InterestOnSavingsAdjNetIncmAmt>5</InterestOnSavingsAdjNetIncmAmt>
+        <DividendsRevAndExpnssAmt>3507</DividendsRevAndExpnssAmt>
+        <DividendsNetInvstIncmAmt>3507</DividendsNetInvstIncmAmt>
+        <DividendsAdjNetIncmAmt>3507</DividendsAdjNetIncmAmt>
+        <NetGainSaleAstRevAndExpnssAmt referenceDocumentId="RetDoc3">-6036</NetGainSaleAstRevAndExpnssAmt>
+        <GrossSalesPriceAmt>139043</GrossSalesPriceAmt>
+        <TotalRevAndExpnssAmt>-2524</TotalRevAndExpnssAmt>
+        <TotalNetInvstIncmAmt>3512</TotalNetInvstIncmAmt>
+        <TotalAdjNetIncmAmt>3512</TotalAdjNetIncmAmt>
+        <AccountingFeesRevAndExpnssAmt referenceDocumentId="RetDoc1">470</AccountingFeesRevAndExpnssAmt>
+        <AccountingFeesNetInvstIncmAmt>470</AccountingFeesNetInvstIncmAmt>
+        <OtherProfFeesRevAndExpnssAmt referenceDocumentId="RetDoc6">1551</OtherProfFeesRevAndExpnssAmt>
+        <OtherProfFeesNetInvstIncmAmt>1551</OtherProfFeesNetInvstIncmAmt>
+        <TravConfMeetingRevAndExpnssAmt>4200</TravConfMeetingRevAndExpnssAmt>
+        <TravConfMeetingNetInvstIncmAmt>4200</TravConfMeetingNetInvstIncmAmt>
+        <TotOprExpensesRevAndExpnssAmt>6221</TotOprExpensesRevAndExpnssAmt>
+        <TotOprExpensesNetInvstIncmAmt>6221</TotOprExpensesNetInvstIncmAmt>
+        <TotOprExpensesDsbrsChrtblAmt>0</TotOprExpensesDsbrsChrtblAmt>
+        <ContriPaidRevAndExpnssAmt>12550</ContriPaidRevAndExpnssAmt>
+        <ContriPaidDsbrsChrtblAmt>12550</ContriPaidDsbrsChrtblAmt>
+        <TotalExpensesRevAndExpnssAmt>18771</TotalExpensesRevAndExpnssAmt>
+        <TotalExpensesNetInvstIncmAmt>6221</TotalExpensesNetInvstIncmAmt>
+        <TotalExpensesDsbrsChrtblAmt>12550</TotalExpensesDsbrsChrtblAmt>
+        <ExcessRevenueOverExpensesAmt>-21295</ExcessRevenueOverExpensesAmt>
+        <NetInvestmentIncomeAmt>0</NetInvestmentIncomeAmt>
+        <AdjustedNetIncomeAmt>3512</AdjustedNetIncomeAmt>
+      </AnalysisOfRevenueAndExpenses>
+      <Form990PFBalanceSheetsGrp>
+        <CashBOYAmt>602</CashBOYAmt>
+        <CashEOYAmt>745</CashEOYAmt>
+        <CashEOYFMVAmt>745</CashEOYFMVAmt>
+        <SavAndTempCashInvstBOYAmt>7463</SavAndTempCashInvstBOYAmt>
+        <SavAndTempCashInvstEOYAmt>3793</SavAndTempCashInvstEOYAmt>
+        <SavAndTempCashInvstEOYFMVAmt>3793</SavAndTempCashInvstEOYFMVAmt>
+        <CorporateStockBOYAmt>180070</CorporateStockBOYAmt>
+        <CorporateStockEOYAmt referenceDocumentId="RetDoc4">163661</CorporateStockEOYAmt>
+        <CorporateStockEOYFMVAmt>256857</CorporateStockEOYFMVAmt>
+        <TotalAssetsBOYAmt>188135</TotalAssetsBOYAmt>
+        <TotalAssetsEOYAmt>168199</TotalAssetsEOYAmt>
+        <TotalAssetsEOYFMVAmt>261395</TotalAssetsEOYFMVAmt>
+        <TotalLiabilitiesEOYAmt>0</TotalLiabilitiesEOYAmt>
+        <OrgDoesNotFollowFASB117Ind>X</OrgDoesNotFollowFASB117Ind>
+        <RetainedEarningBOYAmt>188135</RetainedEarningBOYAmt>
+        <RetainedEarningEOYAmt>168199</RetainedEarningEOYAmt>
+        <TotNetAstOrFundBalancesBOYAmt>188135</TotNetAstOrFundBalancesBOYAmt>
+        <TotNetAstOrFundBalancesEOYAmt>168199</TotNetAstOrFundBalancesEOYAmt>
+        <TotalLiabilitiesNetAstBOYAmt>188135</TotalLiabilitiesNetAstBOYAmt>
+        <TotalLiabilitiesNetAstEOYAmt>168199</TotalLiabilitiesNetAstEOYAmt>
+      </Form990PFBalanceSheetsGrp>
+      <ChgInNetAssetsFundBalancesGrp>
+        <TotNetAstOrFundBalancesBOYAmt>188135</TotNetAstOrFundBalancesBOYAmt>
+        <ExcessRevenueOverExpensesAmt>-21295</ExcessRevenueOverExpensesAmt>
+        <OtherIncreasesAmt referenceDocumentId="RetDoc5">1359</OtherIncreasesAmt>
+        <SubtotalAmt>168199</SubtotalAmt>
+        <TotNetAstOrFundBalancesEOYAmt>168199</TotNetAstOrFundBalancesEOYAmt>
+      </ChgInNetAssetsFundBalancesGrp>
+      <ExciseTaxBasedOnInvstIncmGrp>
+        <InvestmentIncomeExciseTaxAmt>0</InvestmentIncomeExciseTaxAmt>
+        <EstimatedPlusOvpmtIncmTxAmt>136</EstimatedPlusOvpmtIncmTxAmt>
+        <TotalPaymentsAndCreditsAmt>136</TotalPaymentsAndCreditsAmt>
+        <OverpaymentAmt>136</OverpaymentAmt>
+        <AppliedToESTaxAmt>136</AppliedToESTaxAmt>
+      </ExciseTaxBasedOnInvstIncmGrp>
+      <StatementsRegardingActyGrp>
+        <LegislativePoliticalActyInd>false</LegislativePoliticalActyInd>
+        <MoreThan100SpentInd>false</MoreThan100SpentInd>
+        <ActivitiesNotPreviouslyRptInd>false</ActivitiesNotPreviouslyRptInd>
+        <ChangesToArticlesOrBylawsInd>false</ChangesToArticlesOrBylawsInd>
+        <UnrelatedBusIncmOverLimitInd>false</UnrelatedBusIncmOverLimitInd>
+        <OrganizationDissolvedEtcInd>false</OrganizationDissolvedEtcInd>
+        <Section508eRqrSatisfiedInd>true</Section508eRqrSatisfiedInd>
+        <AtLeast5000InAssetsInd>true</AtLeast5000InAssetsInd>
+        <OrgReportOrRegisterStateCd>KS</OrgReportOrRegisterStateCd>
+        <PrivateOperatingFoundationInd>false</PrivateOperatingFoundationInd>
+        <NewSubstantialContributorsInd>false</NewSubstantialContributorsInd>
+        <OwnControlledEntityInd>false</OwnControlledEntityInd>
+        <DonorAdvisedFundInd>false</DonorAdvisedFundInd>
+        <ComplyWithPublicInspRqrInd>true</ComplyWithPublicInspRqrInd>
+        <WebsiteAddressTxt>N/A</WebsiteAddressTxt>
+        <IndividualWithBooksNm>H ALAN BELL</IndividualWithBooksNm>
+        <PhoneNum>7855371673</PhoneNum>
+        <LocationOfBooksUSAddress>
+          <AddressLine1Txt>940 CAPE MARCO DRIVE 1102</AddressLine1Txt>
+          <CityNm>MARCO ISLAND</CityNm>
+          <StateAbbreviationCd>FL</StateAbbreviationCd>
+          <ZIPCd>34145</ZIPCd>
+        </LocationOfBooksUSAddress>
+        <ForeignAccountsQuestionInd>false</ForeignAccountsQuestionInd>
+      </StatementsRegardingActyGrp>
+      <StatementsRegardingActy4720Grp>
+        <SaleOrExchDisqualifiedPrsnInd>false</SaleOrExchDisqualifiedPrsnInd>
+        <BrrwOrLendDisqualifiedPrsnInd>false</BrrwOrLendDisqualifiedPrsnInd>
+        <FurnGoodsDisqualifiedPrsnInd>false</FurnGoodsDisqualifiedPrsnInd>
+        <PayCompDisqualifiedPrsnInd>false</PayCompDisqualifiedPrsnInd>
+        <TransferAstDisqualifiedPrsnInd>false</TransferAstDisqualifiedPrsnInd>
+        <PaymentToGovernmentOfficialInd>false</PaymentToGovernmentOfficialInd>
+        <UndistributedIncomePYInd>false</UndistributedIncomePYInd>
+        <BusinessHoldingsInd>false</BusinessHoldingsInd>
+        <JeopardyInvestmentsInd>false</JeopardyInvestmentsInd>
+        <UncorrectedPYJeopardyInvstInd>false</UncorrectedPYJeopardyInvstInd>
+        <InfluenceLegislationInd>false</InfluenceLegislationInd>
+        <InfluenceElectionInd>false</InfluenceElectionInd>
+        <GrantsToIndividualsInd>false</GrantsToIndividualsInd>
+        <GrantsToOrganizationsInd>false</GrantsToOrganizationsInd>
+        <NoncharitablePurposeInd>false</NoncharitablePurposeInd>
+        <RcvFndsToPayPrsnlBnftCntrctInd>false</RcvFndsToPayPrsnlBnftCntrctInd>
+        <PayPremiumsPrsnlBnftCntrctInd>false</PayPremiumsPrsnlBnftCntrctInd>
+        <ProhibitedTaxShelterTransInd>false</ProhibitedTaxShelterTransInd>
+        <SubjToTaxRmnrtnExPrchtPymtInd>false</SubjToTaxRmnrtnExPrchtPymtInd>
+      </StatementsRegardingActy4720Grp>
+      <OfficerDirTrstKeyEmplInfoGrp>
+        <OfficerDirTrstKeyEmplGrp>
+          <PersonNm>H ALAN BELL</PersonNm>
+          <USAddress>
+            <AddressLine1Txt>940 CAPE MARCO DRIVE 1102</AddressLine1Txt>
+            <CityNm>MARCO ISLAND</CityNm>
+            <StateAbbreviationCd>FL</StateAbbreviationCd>
+            <ZIPCd>34145</ZIPCd>
+          </USAddress>
+          <TitleTxt>PRESIDENT</TitleTxt>
+          <AverageHrsPerWkDevotedToPosRt>1.00</AverageHrsPerWkDevotedToPosRt>
+          <CompensationAmt>0</CompensationAmt>
+          <EmployeeBenefitProgramAmt>0</EmployeeBenefitProgramAmt>
+          <ExpenseAccountOtherAllwncAmt>0</ExpenseAccountOtherAllwncAmt>
+        </OfficerDirTrstKeyEmplGrp>
+        <OfficerDirTrstKeyEmplGrp>
+          <PersonNm>KAREN K BELL</PersonNm>
+          <USAddress>
+            <AddressLine1Txt>940 CAPE MARCO DRIVE 1102</AddressLine1Txt>
+            <CityNm>MARCO ISLAND</CityNm>
+            <StateAbbreviationCd>FL</StateAbbreviationCd>
+            <ZIPCd>34145</ZIPCd>
+          </USAddress>
+          <TitleTxt>SEC/TREAS</TitleTxt>
+          <AverageHrsPerWkDevotedToPosRt>1.00</AverageHrsPerWkDevotedToPosRt>
+          <CompensationAmt>0</CompensationAmt>
+          <EmployeeBenefitProgramAmt>0</EmployeeBenefitProgramAmt>
+          <ExpenseAccountOtherAllwncAmt>0</ExpenseAccountOtherAllwncAmt>
+        </OfficerDirTrstKeyEmplGrp>
+        <OfficerDirTrstKeyEmplGrp>
+          <PersonNm>ANTHONY T BELL</PersonNm>
+          <USAddress>
+            <AddressLine1Txt>13010 WATER LANE</AddressLine1Txt>
+            <CityNm>AUSTIN</CityNm>
+            <StateAbbreviationCd>TX</StateAbbreviationCd>
+            <ZIPCd>78732</ZIPCd>
+          </USAddress>
+          <TitleTxt>DIRECTOR</TitleTxt>
+          <AverageHrsPerWkDevotedToPosRt>1.00</AverageHrsPerWkDevotedToPosRt>
+          <CompensationAmt>0</CompensationAmt>
+          <EmployeeBenefitProgramAmt>0</EmployeeBenefitProgramAmt>
+          <ExpenseAccountOtherAllwncAmt>0</ExpenseAccountOtherAllwncAmt>
+        </OfficerDirTrstKeyEmplGrp>
+        <OfficerDirTrstKeyEmplGrp>
+          <PersonNm>ANDREW A BELL</PersonNm>
+          <USAddress>
+            <AddressLine1Txt>7990 ANDERSON AVE</AddressLine1Txt>
+            <CityNm>MANHATTAN</CityNm>
+            <StateAbbreviationCd>KS</StateAbbreviationCd>
+            <ZIPCd>66503</ZIPCd>
+          </USAddress>
+          <TitleTxt>DIRECTOR</TitleTxt>
+          <AverageHrsPerWkDevotedToPosRt>1.00</AverageHrsPerWkDevotedToPosRt>
+          <CompensationAmt>0</CompensationAmt>
+          <EmployeeBenefitProgramAmt>0</EmployeeBenefitProgramAmt>
+          <ExpenseAccountOtherAllwncAmt>0</ExpenseAccountOtherAllwncAmt>
+        </OfficerDirTrstKeyEmplGrp>
+        <CompOfHghstPdEmplOrNONETxt>NONE</CompOfHghstPdEmplOrNONETxt>
+        <CompOfHghstPdCntrctOrNONETxt>NONE</CompOfHghstPdCntrctOrNONETxt>
+      </OfficerDirTrstKeyEmplInfoGrp>
+      <SumOfProgramRelatedInvstGrp>
+        <Description1Txt>N/A</Description1Txt>
+      </SumOfProgramRelatedInvstGrp>
+      <MinimumInvestmentReturnGrp>
+        <AverageMonthlyFMVOfSecAmt>250200</AverageMonthlyFMVOfSecAmt>
+        <AverageMonthlyCashBalancesAmt>6302</AverageMonthlyCashBalancesAmt>
+        <FMVAllOtherNoncharitableAstAmt>0</FMVAllOtherNoncharitableAstAmt>
+        <TotalFMVOfUnusedAssetsAmt>256502</TotalFMVOfUnusedAssetsAmt>
+        <AdjustedTotalFMVOfUnusedAstAmt>256502</AdjustedTotalFMVOfUnusedAstAmt>
+        <CashDeemedCharitableAmt>3848</CashDeemedCharitableAmt>
+        <NetVlNoncharitableAssetsAmt>252654</NetVlNoncharitableAssetsAmt>
+        <MinimumInvestmentReturnAmt>12633</MinimumInvestmentReturnAmt>
+      </MinimumInvestmentReturnGrp>
+      <DistributableAmountGrp>
+        <MinimumInvestmentReturnAmt>12633</MinimumInvestmentReturnAmt>
+        <DistributableBeforeAdjAmt>12633</DistributableBeforeAdjAmt>
+        <DistributableBeforeDedAmt>12633</DistributableBeforeDedAmt>
+        <DistributableAsAdjustedAmt>12633</DistributableAsAdjustedAmt>
+      </DistributableAmountGrp>
+      <QualifyingDistriPartXIIGrp>
+        <ExpensesAndContributionsAmt>12550</ExpensesAndContributionsAmt>
+        <QualifyingDistributionsAmt>12550</QualifyingDistributionsAmt>
+        <AdjustedQualifyingDistriAmt>12550</AdjustedQualifyingDistriAmt>
+      </QualifyingDistriPartXIIGrp>
+      <UndistributedIncomeGrp>
+        <DistributableAsAdjustedAmt>12633</DistributableAsAdjustedAmt>
+        <ExcessDistributionCyovYr5Amt>1834</ExcessDistributionCyovYr5Amt>
+        <ExcessDistributionCyovYr4Amt>1939</ExcessDistributionCyovYr4Amt>
+        <ExcessDistributionCyovYr3Amt>1536</ExcessDistributionCyovYr3Amt>
+        <ExcessDistributionCyovYr2Amt>1579</ExcessDistributionCyovYr2Amt>
+        <ExcessDistributionCyovYr1Amt>296</ExcessDistributionCyovYr1Amt>
+        <TotalExcessDistributionCyovAmt>7184</TotalExcessDistributionCyovAmt>
+        <QualifyingDistributionsAmt>12550</QualifyingDistributionsAmt>
+        <AppliedToCurrentYearAmt>12550</AppliedToCurrentYearAmt>
+        <ExcessDistriCyovAppCYCorpusAmt>83</ExcessDistriCyovAppCYCorpusAmt>
+        <ExcessDistributionCyovAppCYAmt>83</ExcessDistributionCyovAppCYAmt>
+        <TotalCorpusAmt>7101</TotalCorpusAmt>
+        <UndistributedIncomeCYAmt>0</UndistributedIncomeCYAmt>
+        <ExcessDistriCyovFromYr5Amt>1751</ExcessDistriCyovFromYr5Amt>
+        <ExcessDistriCyovToNextYrAmt>5350</ExcessDistriCyovToNextYrAmt>
+        <ExcessFromYear4Amt>1939</ExcessFromYear4Amt>
+        <ExcessFromYear3Amt>1536</ExcessFromYear3Amt>
+        <ExcessFromYear2Amt>1579</ExcessFromYear2Amt>
+        <ExcessFromYear1Amt>296</ExcessFromYear1Amt>
+      </UndistributedIncomeGrp>
+      <SupplementaryInformationGrp>
+        <ContributingManagerNm>H ALAN BELL</ContributingManagerNm>
+        <OnlyContriToPreselectedInd>X</OnlyContriToPreselectedInd>
+        <GrantOrContributionPdDurYrGrp>
+          <RecipientBusinessName>
+            <BusinessNameLine1Txt>VARIOUS CHARITIES</BusinessNameLine1Txt>
+          </RecipientBusinessName>
+          <RecipientUSAddress>
+            <AddressLine1Txt>940 CAPE MARCO DR</AddressLine1Txt>
+            <CityNm>MARCO ISLAND</CityNm>
+            <StateAbbreviationCd>FL</StateAbbreviationCd>
+            <ZIPCd>341456529</ZIPCd>
+          </RecipientUSAddress>
+          <RecipientRelationshipTxt>NONE</RecipientRelationshipTxt>
+          <RecipientFoundationStatusTxt>PC</RecipientFoundationStatusTxt>
+          <GrantOrContributionPurposeTxt>SUPPORT OF NONPROFIT ORGANIZATIONS</GrantOrContributionPurposeTxt>
+          <Amt>12550</Amt>
+        </GrantOrContributionPdDurYrGrp>
+        <TotalGrantOrContriPdDurYrAmt>12550</TotalGrantOrContriPdDurYrAmt>
+      </SupplementaryInformationGrp>
+      <AnalysisIncomeProducingActyGrp>
+        <IntOnSavAndTempCashInvstGrp>
+          <ExclusionCd>14</ExclusionCd>
+          <ExclusionAmt>5</ExclusionAmt>
+        </IntOnSavAndTempCashInvstGrp>
+        <DivAndIntFromSecPartVIIGrp>
+          <ExclusionCd>14</ExclusionCd>
+          <ExclusionAmt>3507</ExclusionAmt>
+        </DivAndIntFromSecPartVIIGrp>
+        <GainSalesAstOthThanInvntryGrp>
+          <RelatedOrExemptFunctionIncmAmt>-6036</RelatedOrExemptFunctionIncmAmt>
+        </GainSalesAstOthThanInvntryGrp>
+        <SubtotalsIncmProducingActyGrp>
+          <ExclusionAmt>3512</ExclusionAmt>
+          <RelatedOrExemptFunctionIncmAmt>-6036</RelatedOrExemptFunctionIncmAmt>
+        </SubtotalsIncmProducingActyGrp>
+        <TotalIncomeProducingActyAmt>-2524</TotalIncomeProducingActyAmt>
+      </AnalysisIncomeProducingActyGrp>
+      <RlnOfActyToAccomOfExmptPrpsGrp>
+        <RlnOfActyToAccomOfExmptPrpsGrp>
+          <LineNumberTxt>4</LineNumberTxt>
+          <RelationshipStatementTxt>CHARITABLE PURPOSES</RelationshipStatementTxt>
+        </RlnOfActyToAccomOfExmptPrpsGrp>
+        <RlnOfActyToAccomOfExmptPrpsGrp>
+          <LineNumberTxt>8</LineNumberTxt>
+          <RelationshipStatementTxt>CHARITABLE PURPOSES</RelationshipStatementTxt>
+        </RlnOfActyToAccomOfExmptPrpsGrp>
+      </RlnOfActyToAccomOfExmptPrpsGrp>
+      <TrnsfrTransRlnNonchrtblEOGrp>
+        <TrnsfrOfCashToNonchrtblEOInd>false</TrnsfrOfCashToNonchrtblEOInd>
+        <TrnsfrOtherAssetNonchrtblEOInd>false</TrnsfrOtherAssetNonchrtblEOInd>
+        <SalesOrExchangesOfAssetsInd>false</SalesOrExchangesOfAssetsInd>
+        <PurchaseOfAssetsNonchrtblEOInd>false</PurchaseOfAssetsNonchrtblEOInd>
+        <RentalOfFacilitiesOthAssetsInd>false</RentalOfFacilitiesOthAssetsInd>
+        <ReimbursementArrangementsInd>false</ReimbursementArrangementsInd>
+        <LoansOrLoanGuaranteesInd>false</LoansOrLoanGuaranteesInd>
+        <PerformanceOfServicesEtcInd>false</PerformanceOfServicesEtcInd>
+        <SharingOfFacilitiesEtcInd>false</SharingOfFacilitiesEtcInd>
+        <RelationshipsNonchrtblEOInd>false</RelationshipsNonchrtblEOInd>
+      </TrnsfrTransRlnNonchrtblEOGrp>
+    </IRS990PF>
+    <AccountingFeesSchedule documentId="RetDoc1">
+      <AccountingFeesDetail>
+        <CategoryTxt>ACCOUNTING FEES</CategoryTxt>
+        <Amt>470</Amt>
+        <NetInvestmentIncomeAmt>470</NetInvestmentIncomeAmt>
+      </AccountingFeesDetail>
+    </AccountingFeesSchedule>
+    <ExplnOfNonFilingWithAGStmt documentId="RetDoc2">
+      <ExplanationTxt>NOT REQUIRED</ExplanationTxt>
+    </ExplnOfNonFilingWithAGStmt>
+    <GainLossSaleOtherAssetsSch documentId="RetDoc3">
+      <GainLossSaleOtherAssetGrp>
+        <AssetDesc>WELLS FARGO</AssetDesc>
+        <HowAcquiredTxt>PURCHASE</HowAcquiredTxt>
+        <GrossSalesPriceAmt>139043</GrossSalesPriceAmt>
+        <BasisAmt>145079</BasisAmt>
+        <TotalNetAmt>-6036</TotalNetAmt>
+      </GainLossSaleOtherAssetGrp>
+    </GainLossSaleOtherAssetsSch>
+    <InvestmentsCorpStockSchedule documentId="RetDoc4">
+      <InvestmentsCorporateStockGrp>
+        <StockNm>WELLS FARGO</StockNm>
+        <EOYBookValueAmt>163661</EOYBookValueAmt>
+        <EOYFMVAmt>256857</EOYFMVAmt>
+      </InvestmentsCorporateStockGrp>
+    </InvestmentsCorpStockSchedule>
+    <OtherIncreasesSchedule documentId="RetDoc5">
+      <OtherIncreasesDetail>
+        <Desc>PRIOR PERIOD ADJ</Desc>
+        <Amt>1359</Amt>
+      </OtherIncreasesDetail>
+    </OtherIncreasesSchedule>
+    <OtherProfessionalFeesSchedule documentId="RetDoc6">
+      <OtherProfessionalFeesDetail>
+        <CategoryTxt>ADVISORY FEES</CategoryTxt>
+        <Amt>1551</Amt>
+        <NetInvestmentIncomeAmt>1551</NetInvestmentIncomeAmt>
+      </OtherProfessionalFeesDetail>
+    </OtherProfessionalFeesSchedule>
+  </ReturnData>
+</Return>
