@@ -34,7 +34,7 @@ But, you'll need to do `/api/v1/recipients?page=2` to see the second page of `/a
 
 ## Filers
 
-http://localhost:3000/api/v1/filers lets you see filers.
+http://localhost:3000/api/v1/filers lets you see filers, and http://localhost:3000/api/v1/filers?ein=472387053, for example, lets you see the unique filer with EIN `472387053`.
 
 ## Forms
 
