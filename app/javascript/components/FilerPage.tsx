@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Filer from '../types';
+import HistoricalGivingChart from './HistoricalGivingChart';
+import fetchAllDataFrom from './fetchAllDataFrom';
 
 const FilerPage = () => {
   const { ein } = useParams();
   const [filer, setFiler] = useState<Filer>();
 
   useEffect(() => {
-    fetch(`/api/v1/filers?ein=${ein}`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setFiler(data[0]);
-      });
+    const fetchData = async () => {
+      const data = await fetchAllDataFrom(`/api/v1/filers?ein=${ein}`);
+      console.log(data);
+      setFiler(data[0]);
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -31,6 +34,7 @@ const FilerPage = () => {
             Address: {filer.address_line_1}, {filer.city}, {filer.state},{' '}
             {filer.zip}
           </p>
+          <HistoricalGivingChart filer={filer} />
         </div>
       ) : (
         <p>There was an error fetching filers.</p>

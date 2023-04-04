@@ -3,17 +3,19 @@ import React, { useEffect, useState } from 'react';
 import Filer from '../types';
 import './App.css';
 import FilerCard from './FilerCard';
+import fetchAllDataFrom from './fetchAllDataFrom';
 
 function Homepage() {
   const [filers, setFilers] = useState<Array<Filer>>();
 
   useEffect(() => {
-    fetch(`/api/v1/filers`)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setFilers(data);
-      });
+    const fetchData = async () => {
+      const data = await fetchAllDataFrom('/api/v1/filers');
+      console.log(data);
+      setFilers(data);
+    };
+
+    fetchData();
   }, []);
 
   return (
