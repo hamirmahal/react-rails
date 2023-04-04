@@ -30,7 +30,7 @@ Pagination shows up to 100 results at a time.
 
 To see the first page, no `page` parameter is necessary.
 
-But, you'll need to do `/api/v1/recipients?page=2` to see the second page of `/api/v1/recipients`, for example.
+But, you'll need to do http://localhost:3000/api/v1/recipients?page=2 to see the second page of the results from http://localhost:3000/api/v1/recipients, for example.
 
 ## Filers
 
