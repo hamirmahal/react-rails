@@ -24,7 +24,7 @@ Feel free to run `sudo service postgresql status` again to make sure it started.
 
 - Deployment instructions
 
-# Misc
+# API
 
 Pagination shows up to 100 results at a time.
 
@@ -32,6 +32,14 @@ To see the first page, no `page` parameter is necessary.
 
 But, you'll need to do `/api/v1/recipients?page=2` to see the second page of `/api/v1/recipients`, for example.
 
-`/api/v1/forms?filer_ein=200253310` lets you see forms filed by the filer with EIN 200253310.
+## Filers
 
-While `/api/v1/recipients` lets you see recipients, `/api/v1/recipients?form_id=5` shows you `recipients` associated with the filing with id `5`.
+http://localhost:3000/api/v1/filers lets you see filers.
+
+## Forms
+
+http://localhost:3000/api/v1/forms lets you see forms, and http://localhost:3000/api/v1/forms?filer_ein=200253310 lets you see forms filed by the filer with EIN `200253310`.
+
+## Recipients
+
+While http://localhost:3000/api/v1/recipients lets you see recipients, http://localhost:3000/api/v1/recipients?form_id=5 shows you `recipients` associated with `form_id` 5.
