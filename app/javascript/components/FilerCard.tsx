@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Filer from '../types';
 
 interface Props {
@@ -23,6 +24,7 @@ const FilerCard: React.FC<Props> = ({ filer }) => {
       <p>
         {filer.city}, {filer.state} {filer.zip}
       </p>
+      <Link to={`/filers/${filer.ein}`}>View Details</Link>
     </div>
   );
 };

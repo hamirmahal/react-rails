@@ -9,4 +9,7 @@ Rails.application.routes.draw do
       resources :filers, :forms, :recipients, only: [:index]
     end
   end
+
+  # Serve React app for any other request.
+  get "*path", to: "components#index", via: :all
 end

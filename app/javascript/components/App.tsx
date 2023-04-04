@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+
 import Filer from '../types';
 import './App.css';
-import FilerCard from './FilerCard';
+import FilerPage from './FilerPage';
+import Homepage from './Homepage';
 
 function App() {
   const [filers, setFilers] = useState<Array<Filer>>();
@@ -17,30 +20,12 @@ function App() {
 
   return (
     <div className="App">
-      <header
-        style={{
-          marginBottom: '5%'
-        }}
-      >
-        Filers
-      </header>
-      <main>
-        {filers ? (
-          <div
-            style={{
-              display: 'block',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            {filers.map((filer) => (
-              <FilerCard key={filer.ein} filer={filer} />
-            ))}
-          </div>
-        ) : (
-          <p>There was an error fetching filers.</p>
-        )}
-      </main>
+      <Router>
+        <Routes>
+          <Route path="/" Component={Homepage} />
+          <Route path="/filers/:ein" Component={FilerPage} />
+        </Routes>
+      </Router>
     </div>
   );
 }

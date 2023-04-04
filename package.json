@@ -6,13 +6,15 @@
     "@hotwired/turbo-rails": "^7.3.0",
     "esbuild": "^0.17.15",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"
   },
   "devDependencies": {
     "@types/react": "^18.0.32",
-    "@types/react-dom": "^18.0.11"
+    "@types/react-dom": "^18.0.11",
+    "@types/react-router-dom": "^5.3.3"
   }
 }
