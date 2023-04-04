@@ -25,13 +25,13 @@ ChartJS.register(
   Legend
 );
 
-interface Props {
-  filer: Filer;
-}
-
 interface DateAndAmounts {
   taxPeriod: string;
   cashAmount: number;
+}
+
+interface Props {
+  filer: Filer;
 }
 
 const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
