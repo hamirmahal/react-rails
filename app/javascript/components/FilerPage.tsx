@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Filer from '../types';
+import FilingMap from './FilingMap';
 import HistoricalGivingChart from './HistoricalGivingChart';
 import fetchAllDataFrom from './fetchAllDataFrom';
 
@@ -34,7 +35,9 @@ const FilerPage = () => {
             Address: {filer.address_line_1}, {filer.city}, {filer.state},{' '}
             {filer.zip}
           </p>
+          {/* @TODO: Refactor similar recipient data gathering logic. */}
           <HistoricalGivingChart filer={filer} />
+          <FilingMap filer={filer} />
         </div>
       ) : (
         <p>There was an error fetching filers.</p>
