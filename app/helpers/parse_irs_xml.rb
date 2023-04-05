@@ -1,6 +1,11 @@
 require "nokogiri"
 require "open-uri"
 
+# This line exists solely to prevent this error when deploying to Heroku.
+# "expected file /app/app/helpers/parse_irs_xml.rb to define constant
+# ParseIrsXml, but didn't (Zeitwerk::NameError)"
+ParseIrsXml = "some value"
+
 def parse_irs_xml(path_to_xml)
   # doc =
   #   Nokogiri.HTML(
