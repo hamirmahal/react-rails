@@ -1,3 +1,4 @@
+import { Oval, useLoading } from '@agney/react-loading';
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -37,6 +38,10 @@ interface Props {
 const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
   const [datesAndAmts, setDatesAndAmts] = useState<Array<DateAndAmounts>>([]);
   const [loading, setLoading] = useState(true);
+  const { indicatorEl } = useLoading({
+    loading,
+    indicator: <Oval width="50" />
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,7 +107,7 @@ const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
       }}
     />
   ) : loading ? (
-    <p>Loading...</p>
+    indicatorEl
   ) : (
     <p>No historical giving information available</p>
   );

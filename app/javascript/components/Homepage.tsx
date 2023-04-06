@@ -1,5 +1,5 @@
+import { Oval, useLoading } from '@agney/react-loading';
 import React, { useEffect, useState } from 'react';
-
 import Filer from '../types';
 import './App.css';
 import FilerCard from './FilerCard';
@@ -8,6 +8,10 @@ import fetchAllDataFrom from './fetchAllDataFrom';
 function Homepage() {
   const [filers, setFilers] = useState<Array<Filer>>();
   const [loading, setLoading] = useState(true);
+  const { indicatorEl } = useLoading({
+    loading,
+    indicator: <Oval width="50" />
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,7 +35,7 @@ function Homepage() {
       </header>
       <main>
         {loading ? (
-          <p>Loading...</p>
+          indicatorEl
         ) : filers ? (
           <div
             style={{
