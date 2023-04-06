@@ -59,7 +59,7 @@ const FilingMap: React.FC<Props> = ({ filer }) => {
     fetchData();
   }, []);
 
-  return (
+  return stateToNumRecipients?.size ? (
     <ComposableMap
       projection="geoAlbersUsa"
       projectionConfig={{
@@ -115,6 +115,8 @@ const FilingMap: React.FC<Props> = ({ filer }) => {
         )}
       </Geographies>
     </ComposableMap>
+  ) : (
+    <></>
   );
 };
 
