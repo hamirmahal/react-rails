@@ -1,30 +1,46 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
 require_relative "../app/helpers/parse_irs_xml.rb"
-require "pg"
 
-# Connect to the Postgres database.
-conn = PG.connect(dbname: "instrumentl_development")
+# Initialize the tables
+ActiveRecord::Schema.define do
+  create_table :filers, id: false, if_not_exists: true do |t|
+    t.integer :ein, primary_key: true
+    t.string :name
+    t.string :address_line_1
+    t.string :city
+    t.string :state, limit: 2
+    t.string :zip, limit: 20
+  end
 
-# Initialize the three related tables we need.
+  if ActiveRecord::Base.connection.table_exists?('forms') == false
+    create_table :forms, if_not_exists: true do |t|
+      t.integer :filer_ein, foreign_key: true
+      t.date :tax_period
+      t.datetime :return_ts
+    end
+    add_foreign_key :forms, :filers, column: :filer_ein, primary_key: "ein"
+  else
+    puts "Table already exists; skipping ahead - forms"
+  end
 
-# Create a `filers` table if it doesn't exist.
-conn.exec(
-  "CREATE TABLE IF NOT EXISTS filers (ein int PRIMARY KEY, name VARCHAR, address_line_1 VARCHAR, city VARCHAR(100), state VARCHAR(2), zip VARCHAR(20))"
-)
-# Create a `forms` table if it doesn't exist.
-conn.exec(
-  "CREATE TABLE IF NOT EXISTS forms (id SERIAL PRIMARY KEY, filer_ein INTEGER REFERENCES filers(ein), tax_period DATE, return_ts timestamp with time zone)"
-)
-# Create a `recipients` table if it doesn't exist.
-conn.exec(
-  "CREATE TABLE IF NOT EXISTS recipients (ein int, form_id INTEGER REFERENCES forms(id), name VARCHAR, address_line_1 VARCHAR, city VARCHAR(100), state VARCHAR(2), zip VARCHAR(20), cash_grant NUMERIC, purpose VARCHAR)"
-)
+  if ActiveRecord::Base.connection.table_exists?('recipients') == false
+    create_table :recipients, id: false, if_not_exists: true do |t|
+      t.integer :ein
+      t.integer :form_id, foreign_key: true
+      t.string :name
+      t.string :address_line_1
+      t.string :city
+      t.string :state, limit: 2
+      t.string :zip, limit: 20
+      t.decimal :cash_grant
+      t.string :purpose
+    end
+    add_foreign_key :recipients, :forms, column: :form_id, primary_key: "id"
+  else
+    puts "Table already exists; skipping ahead - recipients"
+  end
+end
+
+puts "\n"
 
 [1, 2, 3, 4, 5, 6, 7, 8].each do |i|
   return_ts, tax_period, filer_info, recipients_info =
@@ -34,109 +50,63 @@ conn.exec(
 
   ein, name, address_line_1, city, state, zip = filer_info
 
-  # Establish a connection to the database.
-  conn = PG.connect(dbname: "instrumentl_development")
-
-  # Unconditionally insert this filer into the filers table,
-  # doing nothing if we already have a record of this filer.
-  conn.exec_params(
-    "INSERT INTO filers (ein, name, address_line_1, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT DO NOTHING",
-    [ein, name, address_line_1, city, state, zip]
+  # Unconditionally insert a filer into the table if it's new.
+  # It's okay if this isn't part of the atomic transaction;
+  # the database won't be in an invalid state if we have a new filer
+  # without a form filled by the filer.
+  filer = Filer.find_or_create_by(
+    ein: ein,
+    name: name,
+    address_line_1: address_line_1,
+    city: city,
+    state: state,
+    zip: zip
   )
 
-  # Check if this form is brand new.
-  # We skip ahead after insertion if it is.
-  result =
-    conn.exec_params(
-      "SELECT * FROM forms WHERE filer_ein = $1 AND tax_period = $2",
-      [ein, tax_period]
-    )
-  thisEntryIsBrandNew = result.ntuples == 0
-  if thisEntryIsBrandNew
-    # Atomically insert into the table.
-    begin
-      conn.transaction do
-        # Insert a new row for this form.
-        conn.exec_params(
-          "INSERT INTO forms (filer_ein, tax_period, return_ts) VALUES ($1, $2, $3)",
-          [ein, tax_period, return_ts]
-        )
+  # Process form data atomically to prevent the
+  # database from entering an invalid state.
+  ActiveRecord::Base.transaction do
+    # If this form is for a unique tax period...
+    if Form.exists?(filer_ein: ein, tax_period: tax_period) == false
+      # Create a new form associated with this filer.
+      form = Form.create!(
+        filer_ein: ein,
+        tax_period: tax_period,
+        return_ts: return_ts
+      )
 
-        # Insert the corresponding recipients.
-        for recipient in recipients_info
-          ein, name, address_line_1, city, state, zip, cash_amount, purpose =
-            recipient
-          conn.exec_params(
-            "INSERT INTO recipients (ein, form_id, name, address_line_1, city, state, zip, cash_grant, purpose) VALUES ($1, currval(pg_get_serial_sequence('forms', 'id')), $2, $3, $4, $5, $6, $7, $8)",
-            [ein, name, address_line_1, city, state, zip, cash_amount, purpose]
-          )
-        end
-        puts "test/fixtures/irs#{i}.xml - Finished!\n\n"
+      # Add the associated recipients.
+      recipients_info.each do |recipient|
+        ein, name, address_line_1, city, state, zip, cash_amount, purpose = recipient
+        form.recipients.create!(ein: ein, name: name, address_line_1: address_line_1, city: city, state: state, zip: zip, cash_grant: cash_amount, purpose: purpose)
       end
-    rescue PG::Error => e
-      puts e.message
-    ensure
-      conn.close if conn
-      # Skip ahead.
+
+      # Continue onto the next file.
       next
+    else
+      print "Filer with EIN ", ein, " and tax period ", tax_period
+      print " already exists; checking for outdated forms...\n"
     end
-  else
-    print "Filer with EIN ", ein, " and tax period ", tax_period
-    print " already exists; checking for outdated forms...\n"
-  end
 
-  outdated_forms =
-    conn.exec_params(
-      "SELECT * FROM forms WHERE filer_ein = $1 AND tax_period = $2 AND return_ts < $3",
-      [ein, tax_period, return_ts]
-    )
+    thereWasAtLeast1OutdatedForm = false;
+    Form.where(tax_period: tax_period).where(filer_ein: ein).where('return_ts < ?', return_ts).each do |form|
+      thereWasAtLeast1OutdatedForm = true;
+      # Delete all recipients associated with this form.
+      form.recipients.destroy_all
+      # Delete this form.
+      form.destroy
+    end
 
-  thereAreOutdatedForms = outdated_forms.ntuples > 0
-  if thereAreOutdatedForms
-    begin
-      conn.transaction do
-        # Atomically delete all corresponding recipients and the outdated form.
-        for outdated_form in outdated_forms
-          form_id_to_delete = outdated_form["id"]
-          puts outdated_form
+    if thereWasAtLeast1OutdatedForm
+      # Add the new form and the associated recipients.
+      form = Form.create!(filer_ein: ein, tax_period: tax_period, return_ts: return_ts)
 
-          print "Deleting all recipients with form id ",
-                form_id_to_delete,
-                "...\n"
-          conn.exec_params(
-            "DELETE FROM recipient WHERE form_id = $1",
-            [form_id_to_delete]
-          )
-
-          print "Deleting form with id ", form_id_to_delete, "...\n"
-          conn.exec_params(
-            "DELETE FROM form WHERE id = $1",
-            [form_id_to_delete]
-          )
-        end
-
-        # Now, add the new form and the associated recipients.
-        conn.exec_params(
-          "INSERT INTO forms (filer_ein, tax_period, return_ts) VALUES ($1, $2, $3)",
-          [ein, tax_period, return_ts]
-        )
-        for recipient in recipients_info
-          ein, name, address_line_1, city, state, zip, cash_amount, purpose =
-            recipient
-          conn.exec_params(
-            "INSERT INTO recipients (ein, form_id, name, address_line_1, city, state, zip, cash_grant, purpose) VALUES ($1, currval(pg_get_serial_sequence('forms', 'id')), $2, $3, $4, $5, $6, $7, $8)",
-            [ein, name, address_line_1, city, state, zip, cash_amount, purpose]
-          )
-        end
+      recipients_info.each do |recipient|
+        ein, name, address_line_1, city, state, zip, cash_amount, purpose = recipient
+        form.recipients.create!(ein: ein, name: name, address_line_1: address_line_1, city: city, state: state, zip: zip, cash_grant: cash_amount, purpose: purpose)
       end
-    rescue PG::Error => e
-      puts e.message
-    ensure
-      conn.close if conn
     end
-  else
-    puts "No outdated forms for filer with EIN " + ein + ","
-    print "tax period ", tax_period, ", and return timestamp "
-    print return_ts, ".\n\n"
   end
+
+  puts "test/fixtures/irs#{i}.xml - Finished!\n\n"
 end
