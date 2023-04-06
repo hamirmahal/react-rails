@@ -7,12 +7,14 @@ import fetchAllDataFrom from './fetchAllDataFrom';
 
 function Homepage() {
   const [filers, setFilers] = useState<Array<Filer>>();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllDataFrom('/api/v1/filers');
       console.log(data);
       setFilers(data);
+      setLoading(false);
     };
 
     fetchData();
@@ -28,7 +30,9 @@ function Homepage() {
         Filers
       </header>
       <main>
-        {filers ? (
+        {loading ? (
+          <p>Loading...</p>
+        ) : filers ? (
           <div
             style={{
               display: 'block',
