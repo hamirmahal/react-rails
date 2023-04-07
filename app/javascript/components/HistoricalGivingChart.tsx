@@ -92,20 +92,36 @@ const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
     }
   };
   return datesAndAmts[0]?.cashAmount ? (
-    <Line
-      options={options}
-      data={{
-        labels: datesAndAmts.map((datesAndAmts) => datesAndAmts.taxPeriod),
-        datasets: [
-          {
-            data: datesAndAmts.map((datesAndAmts) => datesAndAmts.cashAmount),
-            borderColor: 'rgb(53, 162, 235)',
-            backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            label: 'Historical Giving'
-          }
-        ]
-      }}
-    />
+    datesAndAmts.length === 1 ? (
+      <>
+        {/* Chart with 1 datapoint looks awkward;
+        just display the results in text format, instead. */}
+        <h3>Historical giving for {filer.name}</h3>
+        <p>
+          {datesAndAmts[0].taxPeriod.split('-')[0]}:{' '}
+          {datesAndAmts[0].cashAmount.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2
+          })}
+        </p>
+      </>
+    ) : (
+      <Line
+        options={options}
+        data={{
+          labels: datesAndAmts.map((datesAndAmts) => datesAndAmts.taxPeriod),
+          datasets: [
+            {
+              data: datesAndAmts.map((datesAndAmts) => datesAndAmts.cashAmount),
+              borderColor: 'rgb(53, 162, 235)',
+              backgroundColor: 'rgba(53, 162, 235, 0.5)',
+              label: 'Historical Giving'
+            }
+          ]
+        }}
+      />
+    )
   ) : loading ? (
     indicatorEl
   ) : (

@@ -66,8 +66,7 @@ const FilingMap: React.FC<Props> = ({ filer }) => {
           // The `ComposableMap` component's top padding already
           // results in a significant vertical gap between itself and
           // the element before it.
-          marginBottom: -40,
-          marginTop: 100
+          marginBottom: -40
         }}
       >
         Recipients by state
