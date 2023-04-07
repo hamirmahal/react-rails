@@ -63,5 +63,33 @@ def parse_irs_xml(path_to_xml)
     )
   end
 
+  # Also check `IRS990PF`.
+  recipients = doc.css(
+    "Return/ReturnData/IRS990PF/SupplementaryInformationGrp/GrantOrContributionPdDurYrGrp"
+  )
+  for recipient in recipients
+    # Some recipients, like Benton Falls Community Church, don't have an EIN.
+    ein = nil
+    name =
+      recipient.css(
+        "RecipientNameBusiness,RecipientBusinessName/BusinessNameLine1,BusinessNameLine1Txt"
+      ).text
+    if name == ""
+      # Don't add a row for entries missing a name.
+      next
+    end
+    address = recipient.css("RecipientUSAddress,USAddress,AddressUS")
+    address_line_1 = address.css("AddressLine1,AddressLine1Txt").text
+    city = address.css("City,CityNm").text
+    state = address.css("State,StateAbbreviationCd").text
+    zipcode = address.css("ZIPCode,ZIPCd").text
+    # - Parse and store award attributes, such as purpose, cash amount, and tax period
+    cash_amount = recipient.css("Amt").text
+    purpose = recipient.css("GrantOrContributionPurposeTxt").text
+    recipients_info.push(
+      [ein, name, address_line_1, city, state, zipcode, cash_amount, purpose]
+    )
+  end
+
   return return_ts, tax_period, filer_info, recipients_info
 end
