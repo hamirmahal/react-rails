@@ -34,7 +34,8 @@ def parse_irs_xml(path_to_xml)
   zip = address_path.css("ZIPCode,ZIPCd").text
   filer_info = [ein, name, address_line_1, city, state, zip]
 
-  # - Parse and store ein, name, address, city, state, zip code info for both filers and recipients
+  # Parse and store ein, name, address, city, state, and zip code
+  # information for both filers and recipients.
   recipients_info = Array.new
   recipients = doc.css("Return/ReturnData/IRS990ScheduleI/RecipientTable")
   for recipient in recipients
