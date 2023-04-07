@@ -1,3 +1,4 @@
+import { Oval, useLoading } from '@agney/react-loading';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Filer from '../types';
@@ -8,12 +9,18 @@ import fetchAllDataFrom from './fetchAllDataFrom';
 const FilerPage = () => {
   const { ein } = useParams();
   const [filer, setFiler] = useState<Filer>();
+  const [loading, setLoading] = useState(true);
+  const { indicatorEl } = useLoading({
+    loading,
+    indicator: <Oval width="50" />
+  });
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllDataFrom(`/api/v1/filers?ein=${ein}`);
       console.log(data);
       setFiler(data[0]);
+      setLoading(false);
     };
 
     fetchData();
@@ -39,6 +46,8 @@ const FilerPage = () => {
           <HistoricalGivingChart filer={filer} />
           <FilingMap filer={filer} />
         </div>
+      ) : loading ? (
+        indicatorEl
       ) : (
         <p>There was an error fetching the filer with EIN {ein}.</p>
       )}
