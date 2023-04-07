@@ -40,7 +40,7 @@ const FilerPage = () => {
           <FilingMap filer={filer} />
         </div>
       ) : (
-        <p>There was an error fetching filers.</p>
+        <p>There was an error fetching the filer with EIN {ein}.</p>
       )}
     </main>
   );
