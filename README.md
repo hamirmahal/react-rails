@@ -11,7 +11,18 @@
 - Database creation
 
 - Database initialization
-  `bin/rails db:seed` should acccomplish this.
+
+```sh
+bin/rails db:seed
+```
+
+should acccomplish this locally.
+
+```sh
+heroku run rails db:seed
+```
+
+should let you seed the production database.
 
 - How to run the test suite
   `bin/rails test test/helpers/parse_irs_xml_test.rb`
