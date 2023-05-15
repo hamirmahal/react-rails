@@ -26,9 +26,9 @@ const FilerPage = () => {
     fetchData();
   }, []);
 
-  return (
-    <main>
-      {filer ? (
+  if (filer) {
+    return (
+      <main>
         <div
           style={{
             display: 'block',
@@ -46,7 +46,13 @@ const FilerPage = () => {
           <HistoricalGivingChart filer={filer} />
           <FilingMap filer={filer} />
         </div>
-      ) : loading ? (
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      {loading ? (
         indicatorEl
       ) : (
         <p>There was an error fetching the filer with EIN {ein}.</p>
