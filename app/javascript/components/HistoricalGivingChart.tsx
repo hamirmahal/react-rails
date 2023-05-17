@@ -10,7 +10,7 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Line } from 'react-chartjs-2';
 import Filer from '../types';
 import fetchAllDataFrom from './fetchAllDataFrom';
@@ -36,14 +36,16 @@ interface Props {
 }
 
 const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
-  const [datesAndAmts, setDatesAndAmts] = useState<Array<DateAndAmounts>>([]);
-  const [loading, setLoading] = useState(true);
+  const [datesAndAmts, setDatesAndAmts] = React.useState<Array<DateAndAmounts>>(
+    []
+  );
+  const [loading, setLoading] = React.useState(true);
   const { indicatorEl } = useLoading({
     loading,
     indicator: <Oval width="50" />
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       const { ein } = filer;
       const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);

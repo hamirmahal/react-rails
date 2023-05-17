@@ -1,5 +1,5 @@
 import { Oval, useLoading } from '@agney/react-loading';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import Filer from '../types';
 import FilingMap from './FilingMap';
@@ -8,14 +8,14 @@ import fetchAllDataFrom from './fetchAllDataFrom';
 
 const FilerPage = () => {
   const { ein } = useParams();
-  const [filer, setFiler] = useState<Filer>();
-  const [loading, setLoading] = useState(true);
+  const [filer, setFiler] = React.useState<Filer>();
+  const [loading, setLoading] = React.useState(true);
   const { indicatorEl } = useLoading({
     loading,
     indicator: <Oval width="50" />
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllDataFrom(`/api/v1/filers?ein=${ein}`);
       console.log(data);
