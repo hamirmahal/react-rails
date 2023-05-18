@@ -1,19 +1,19 @@
 import { Oval, useLoading } from '@agney/react-loading';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Filer from '../types';
 import './App.css';
 import FilerCard from './FilerCard';
 import fetchAllDataFrom from './fetchAllDataFrom';
 
 function Homepage() {
-  const [filers, setFilers] = useState<Array<Filer>>();
-  const [loading, setLoading] = useState(true);
+  const [filers, setFilers] = React.useState<Array<Filer>>();
+  const [loading, setLoading] = React.useState(true);
   const { indicatorEl } = useLoading({
     loading,
     indicator: <Oval width="50" />
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllDataFrom('/api/v1/filers');
       console.log(data);

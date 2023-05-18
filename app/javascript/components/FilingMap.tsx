@@ -1,5 +1,5 @@
 import { geoCentroid } from 'd3-geo';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Annotation,
   ComposableMap,
@@ -31,11 +31,11 @@ interface Props {
 }
 
 const FilingMap: React.FC<Props> = ({ filer }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = React.useState(true);
   const [stateToNumRecipients, setStateToNumRecipients] =
-    useState<Map<string, number>>();
+    React.useState<Map<string, number>>();
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchData = async () => {
       const { ein } = filer;
       const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
