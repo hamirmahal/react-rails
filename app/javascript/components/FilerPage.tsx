@@ -16,14 +16,14 @@ const FilerPage = () => {
   });
 
   React.useEffect(() => {
-    const fetchData = async () => {
+    const fetchFilerData = async () => {
       const data = await fetchAllDataFrom(`/api/v1/filers?ein=${ein}`);
       console.log(data);
       setFiler(data[0]);
       setLoading(false);
     };
 
-    fetchData();
+    fetchFilerData();
   }, []);
 
   if (filer) {
