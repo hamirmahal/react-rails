@@ -26,40 +26,11 @@ const offsets = {
   DC: [49, 21]
 };
 
-interface Props {
-  filer: Filer;
-}
-
-const FilingMap: React.FC<Props> = ({ filer }) => {
-  const [loading, setLoading] = React.useState(true);
-  const [stateToNumRecipients, setStateToNumRecipients] =
-    React.useState<Map<string, number>>();
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const { ein } = filer;
-      const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
-      const stateToNumRecipients = new Map<string, number>();
-      for (const form of formData) {
-        const { id } = form;
-        const recipientData = await fetchAllDataFrom(
-          `/api/v1/recipients?form_id=${id}`
-        );
-        for (const recipient of recipientData) {
-          const { state } = recipient;
-          const count = stateToNumRecipients.get(state) ?? 0;
-          stateToNumRecipients.set(state, count + 1);
-        }
-      }
-      console.log('stateToNumRecipients is', stateToNumRecipients);
-      setStateToNumRecipients(stateToNumRecipients);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  return stateToNumRecipients?.size ? (
+const MapChart: React.FC<{
+  loading: boolean;
+  stateToNumRecipients: Map<string, number>;
+}> = ({ loading, stateToNumRecipients }) => {
+  return (
     <>
       <h3
         style={{
@@ -127,6 +98,44 @@ const FilingMap: React.FC<Props> = ({ filer }) => {
         </Geographies>
       </ComposableMap>
     </>
+  );
+};
+
+interface Props {
+  filer: Filer;
+}
+
+const FilingMap: React.FC<Props> = ({ filer }) => {
+  const [loading, setLoading] = React.useState(true);
+  const [stateToNumRecipients, setStateToNumRecipients] =
+    React.useState<Map<string, number>>();
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const { ein } = filer;
+      const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
+      const stateToNumRecipients = new Map<string, number>();
+      for (const form of formData) {
+        const { id } = form;
+        const recipientData = await fetchAllDataFrom(
+          `/api/v1/recipients?form_id=${id}`
+        );
+        for (const recipient of recipientData) {
+          const { state } = recipient;
+          const count = stateToNumRecipients.get(state) ?? 0;
+          stateToNumRecipients.set(state, count + 1);
+        }
+      }
+      console.log('stateToNumRecipients is', stateToNumRecipients);
+      setStateToNumRecipients(stateToNumRecipients);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  return stateToNumRecipients?.size ? (
+    <MapChart loading={loading} stateToNumRecipients={stateToNumRecipients} />
   ) : (
     <></>
   );
