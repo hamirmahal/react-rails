@@ -93,8 +93,9 @@ const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
       }
     }
   };
-  return datesAndAmts[0]?.cashAmount ? (
-    datesAndAmts.length === 1 ? (
+
+  if (datesAndAmts[0]?.cashAmount) {
+    return datesAndAmts.length === 1 ? (
       <>
         {/* Chart with 1 datapoint looks awkward;
         just display the results in text format, instead. */}
@@ -123,8 +124,10 @@ const HistoricalGivingChart: React.FC<Props> = ({ filer }) => {
           ]
         }}
       />
-    )
-  ) : loading ? (
+    );
+  }
+
+  return loading ? (
     indicatorEl
   ) : (
     <p>No historical giving information available</p>
