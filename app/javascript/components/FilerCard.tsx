@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Filer from '../types';
+import { Filer } from '../types';
 
 interface Props {
   filer: Filer;
