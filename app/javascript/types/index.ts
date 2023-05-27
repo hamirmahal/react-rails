@@ -1,4 +1,9 @@
-interface Filer {
+export interface DateAndAmount {
+  cashAmount: number;
+  taxPeriod: string;
+}
+
+export interface Filer {
   address_line_1: string;
   city: string;
   ein: number;
@@ -6,5 +11,3 @@ interface Filer {
   state: string;
   zip: string;
 }
-
-export default Filer;

@@ -9,8 +9,6 @@ import {
 } from 'react-simple-maps';
 
 import allStates from '../data/allStates.json';
-import Filer from '../types';
-import fetchAllDataFrom from './fetchAllDataFrom';
 
 const geoUrl = 'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json';
 
@@ -26,10 +24,11 @@ const offsets = {
   DC: [49, 21]
 };
 
-const MapChart: React.FC<{
-  loading: boolean;
+interface Props {
   stateToNumRecipients: Map<string, number>;
-}> = ({ loading, stateToNumRecipients }) => {
+}
+
+const FilingMap: React.FC<Props> = ({ stateToNumRecipients }) => {
   return (
     <>
       <h3
@@ -70,10 +69,7 @@ const MapChart: React.FC<{
                       (Object.keys(offsets).indexOf(cur.id) === -1 ? (
                         <Marker coordinates={centroid}>
                           <text y="2" fontSize={10} textAnchor="middle">
-                            {cur.id}{' '}
-                            {loading
-                              ? ''
-                              : stateToNumRecipients?.get(cur.id) ?? 0}
+                            {cur.id} {stateToNumRecipients?.get(cur.id) ?? 0}
                           </text>
                         </Marker>
                       ) : (
@@ -83,10 +79,7 @@ const MapChart: React.FC<{
                           dy={offsets[cur.id][1]}
                         >
                           <text x={4} fontSize={14} alignmentBaseline="middle">
-                            {cur.id}{' '}
-                            {loading
-                              ? ''
-                              : stateToNumRecipients?.get(cur.id) ?? 0}
+                            {cur.id} {stateToNumRecipients?.get(cur.id) ?? 0}
                           </text>
                         </Annotation>
                       ))}
@@ -98,46 +91,6 @@ const MapChart: React.FC<{
         </Geographies>
       </ComposableMap>
     </>
-  );
-};
-
-interface Props {
-  filer: Filer;
-}
-
-const FilingMap: React.FC<Props> = ({ filer }) => {
-  const [loading, setLoading] = React.useState(true);
-  const [stateToNumRecipients, setStateToNumRecipients] =
-    React.useState<Map<string, number>>();
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      const { ein } = filer;
-      const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
-      const stateToNumRecipients = new Map<string, number>();
-      for (const form of formData) {
-        const { id } = form;
-        const recipientData = await fetchAllDataFrom(
-          `/api/v1/recipients?form_id=${id}`
-        );
-        for (const recipient of recipientData) {
-          const { state } = recipient;
-          const count = stateToNumRecipients.get(state) ?? 0;
-          stateToNumRecipients.set(state, count + 1);
-        }
-      }
-      console.log('stateToNumRecipients is', stateToNumRecipients);
-      setStateToNumRecipients(stateToNumRecipients);
-      setLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  return stateToNumRecipients?.size ? (
-    <MapChart loading={loading} stateToNumRecipients={stateToNumRecipients} />
-  ) : (
-    <></>
   );
 };
 
