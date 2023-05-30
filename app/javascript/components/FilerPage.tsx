@@ -27,6 +27,7 @@ const FilerPage = () => {
     };
 
     const getDataForMapAndHistoricalGivingChart = async () => {
+      const startTime = performance.now();
       const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
       const stateToNumRecipients = new Map<string, number>();
       const taxPeriodsAndCash: Array<DateAndAmount> = [];
@@ -72,6 +73,11 @@ const FilerPage = () => {
       setStateToNumRecipients(stateToNumRecipients);
       setDatesAndAmts(taxPeriodsAndCash);
       setLoading(false);
+      const endTime = performance.now();
+      const elapsedTime = endTime - startTime;
+      console.log(
+        `It took ${elapsedTime / 1000} seconds to initialize the data.`
+      );
     };
 
     fetchFilerData();
