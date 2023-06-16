@@ -28,45 +28,72 @@ const FilerPage = () => {
 
     const getDataForMapAndHistoricalGivingChart = async () => {
       const startTime = performance.now();
-      const formData = await fetchAllDataFrom(`/api/v1/forms?filer_ein=${ein}`);
+      const mapString = sessionStorage.getItem('stateToNumRecipients');
+      const arrString = sessionStorage.getItem('datesAndAmts');
       const stateToNumRecipients = new Map<string, number>();
       const taxPeriodsAndCash: Array<DateAndAmount> = [];
-
-      for (const form of formData) {
-        const { id, tax_period }: { id: number; tax_period: string } = form;
-        const recipientData = await fetchAllDataFrom(
-          `/api/v1/recipients?form_id=${id}`
+      if (mapString && arrString) {
+        JSON.parse(mapString).forEach(([key, value]: [string, number]) => {
+          stateToNumRecipients.set(key, value);
+        });
+        taxPeriodsAndCash.push(...JSON.parse(arrString));
+        console.info('Using cached stateToNumRecipients', stateToNumRecipients);
+        console.info('and taxPeriodsAndCash', taxPeriodsAndCash);
+      } else {
+        console.warn(
+          'Missing stateToNumRecipients or taxPeriodsAndCash; building data...'
+        );
+        const formData = await fetchAllDataFrom(
+          `/api/v1/forms?filer_ein=${ein}`
         );
 
-        // This is to populate the data for the U.S. map.
-        for (const recipient of recipientData) {
-          const { state } = recipient;
-          const count = stateToNumRecipients.get(state) ?? 0;
-          stateToNumRecipients.set(state, count + 1);
+        for (const form of formData) {
+          const { id, tax_period }: { id: number; tax_period: string } = form;
+          const recipientData = await fetchAllDataFrom(
+            `/api/v1/recipients?form_id=${id}`
+          );
+
+          // This is to populate the data for the U.S. map.
+          for (const recipient of recipientData) {
+            const { state } = recipient;
+            const count = stateToNumRecipients.get(state) ?? 0;
+            stateToNumRecipients.set(state, count + 1);
+          }
+
+          // This next section is to populate the data for the historical giving chart.
+          /**
+           * This amount is in whole dollars, with some cents included at the end.
+           * @example 5216678 => $5,216,678.00
+           */
+          let cashAmount = 0;
+          for (const recipient of recipientData) {
+            const { cash_grant } = recipient;
+            cashAmount += parseInt(cash_grant, 10);
+          }
+          taxPeriodsAndCash.push({
+            taxPeriod: tax_period,
+            cashAmount
+          });
         }
 
-        // This next section is to populate the data for the historical giving chart.
-        /**
-         * This amount is in whole dollars, with some cents included at the end.
-         * @example 5216678 => $5,216,678.00
-         */
-        let cashAmount = 0;
-        for (const recipient of recipientData) {
-          const { cash_grant } = recipient;
-          cashAmount += parseInt(cash_grant, 10);
-        }
-        taxPeriodsAndCash.push({
-          taxPeriod: tax_period,
-          cashAmount
+        taxPeriodsAndCash.sort((a, b) =>
+          a.taxPeriod.localeCompare(b.taxPeriod)
+        );
+        taxPeriodsAndCash.forEach((obj) => {
+          // Just keep the year portion of the tax period,
+          // since it's the only part that changes.
+          obj.taxPeriod = obj.taxPeriod.split('-')[0];
         });
-      }
 
-      taxPeriodsAndCash.sort((a, b) => a.taxPeriod.localeCompare(b.taxPeriod));
-      taxPeriodsAndCash.forEach((obj) => {
-        // Just keep the year portion of the tax period,
-        // since it's the only part that changes.
-        obj.taxPeriod = obj.taxPeriod.split('-')[0];
-      });
+        sessionStorage.setItem(
+          'stateToNumRecipients',
+          JSON.stringify(Array.from(stateToNumRecipients.entries()))
+        );
+        sessionStorage.setItem(
+          'datesAndAmts',
+          JSON.stringify(taxPeriodsAndCash)
+        );
+      }
 
       console.log('stateToNumRecipients is', stateToNumRecipients);
       console.log('taxPeriodsAndCash is', taxPeriodsAndCash);
