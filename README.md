@@ -8,17 +8,29 @@
 
 - Configuration
 
+- Database dropping
+
+```sh
+bin/rails db:drop
+```
+
 - Database creation
+
+```sh
+bin/rails db:create
+```
 
 - Database initialization
 
 ```sh
+bin/rails db:schema:load
 bin/rails db:seed
 ```
 
 should acccomplish this locally.
 
 ```sh
+heroku run rails db:schema:load # I haven't tested this, personally.
 heroku run rails db:seed
 ```
 
